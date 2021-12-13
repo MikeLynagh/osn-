@@ -11,19 +11,20 @@ filename=$1
 ####
 
 
-while read line; do
+#while read line; do
 #reading each line
-echo $line
-done < $filename
+#echo $line
+#done < $filename
 
 ####
 # attempt to cycle through each file and back it up
 ####
 
 while read line; do
+#echo $line
 timestamp=date +%b-%d-%y
 sudo tar -cvpzf /home/backup-$timestamp.tar.gz filename
-
+done <$filename
 
 ####
 # Check if each home directory contains a file name.backup
