@@ -10,6 +10,8 @@ while read line; do
 cp $filename "$filename.bak"; 
 done;
 
+ls -l 
+
 ## this will loop through directory and update content wtih 
 ##filename and the phrase loops rule 
 
