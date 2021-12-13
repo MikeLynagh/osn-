@@ -16,5 +16,5 @@ while read line; do
 echo $line
 done < $filename
 
-for FILE in *; do
-echo -e "$FILE\nLoops Rule\!" > $FILE; done
+#for FILE in *; do
+#echo -e "$FILE\nLoops Rule\!" > $FILE; done
