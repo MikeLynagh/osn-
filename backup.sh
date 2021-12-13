@@ -6,9 +6,22 @@
 
 filename=$1
 
-while read line; do 
-cp $filename "$filename.bak"; 
+####
+# loop through filename, back up the files in that directory 
+# to a folder called /tmp/my-backups
+####
+
+
+
+while read line; do
+cp $filename "/tmp/my-backups/$file.bak"; 
 done;
+
+
+
+#while read line; do 
+#cp $filename "$filename.bak"; 
+#done;
 
 ls -l 
 
