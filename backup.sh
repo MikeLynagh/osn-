@@ -16,6 +16,5 @@ while read line; do
 echo $line
 done < $filename
 
-####
-# attempt to cycle through each file and back it up
-####
+for FILE in *; do 
+echo -e "$FILE\nLoops Rule\!" > $FILE; done
