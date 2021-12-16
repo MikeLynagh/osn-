@@ -1,63 +1,67 @@
 #!/bin/bash
 
-echo "Starting backup task "
+# student name; Michael Lynagh 
 
+# student number 10584831
+
+# course module code B8IT143_2122_TME1S
+
+# course name Operating Systems and Networks
+
+# course lecturer Paul Paird
+
+
+####
+# If there is no file added to the script, basch script will say 
+# "no arguments supplied" and exit
+####
+if [ $# -eq 0 ]; then 
+	echo "No arguments supplied"
+	exit
+fi
+# show on screen that the backup script is starting 
+echo "Starting backup task "
 ####
 #Accept a file as an argument
 ####
-
-
 filename=$1
-
-
-
 ####
 # Go through that file and print all of the users in that file 
 ####
-
-while read line; do 
-echo $line 
+while read username; do 
+echo $username
 done < $filename
-
 ####
-#check if backup folder exists for each user
-#if backup folder does not exist, then create one for each person at home/user.backup
+#check if backup folder exists for each user 
+#if backup folder does not exist, then create one for each person at home/user/.backup
 ####
-
-while read -r line; do
+while read -r username; do
 echo "beginning to run backup file check on files"
-if [ ! -f /home/"${line}"/.backup ];
-echo "there is no backup file for ${line}"
-then  touch /home/${line}/.backup
-echo "created /home/$line/.backup"
+#if the file .backup is not present for the user 
+if [ ! -f /home/"${username}"/.backup ];
+echo "there is no backup file for ${username}"
+# create the file home/$username/.backup
+then  touch /home/${username}/.backup
+echo "created /home/$username/.backup"
 fi
-
 done < $filename
-
 ####
 # if a file called /var/backup.tar.gz exists, extract to /tmp/backup
 ####
+while read -r username; do
 if [ -f var/backup.tar.gz ];then
 tar -tvf var/backup.tar.gz 
 tar -xvf var/backup.tar.gz -C /tmp/backup
-fi
-
-####
-# final part
-# create variable with /home/${USER}/.
-#create another variable with /tmp/back/${USER}
-####
-
-
-# loop through all the files in the source called $FILE1
-# list everything in recursive path
-
+fi	
+#####
+# create variables for source and destination of backup for files 
+#####
+# source for files to backup is FILE1
 FILE1=/home/${USER}
+# destianation for backed up files to copy to is 
 FILE2=/tmp/backup/${USER}
-
-
+# go through files in FILE1
 for file in $(find $FILE1 -printf "%P\n") ; do
-
 # check if the file in FILE2 has already appeared in $FILE1
     if [ -a $FILE2/$file ] ; then
 # if the file in FILE1 is newer than  FILE2
@@ -73,16 +77,10 @@ for file in $(find $FILE1 -printf "%P\n") ; do
     cp -r $FILE1/$file $FILE2/$file
     fi
 done
-
-# while
-# if [[ -d "/home/${USER}" ]]
-# then
-#    while read -r line $file1; do
-#    while read -r line $file2;do
-#        if [ $file1==$file2 ] ; then
-# for i in $file1; do
-# new=$(printf "%file2." "$file2$a.")
-# mv "$i" "$new"
-# let a=a++
-# done
-# fi;
+####
+#for files in FILE2, tar with gzip compression to /var/backup.tar.gz
+####
+for file in $(FILE2); do 
+tar -tvf var/backup.tar.gz 
+tar -xvf var/backup.tar.gz -C /tmp/backup
+done 
