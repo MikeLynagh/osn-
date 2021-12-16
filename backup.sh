@@ -80,7 +80,8 @@ done
 ####
 #for files in FILE2, tar with gzip compression to /var/backup.tar.gz
 ####
-for file in $(FILE2); do 
-tar -tvf var/backup.tar.gz 
-tar -xvf var/backup.tar.gz -C /tmp/backup
+for file in $(FILE2); do
+tar -tvf var/backup.tar.gz
+tar -xzvf var/backup.tar.gz /tmp/backup
+done
 done 
