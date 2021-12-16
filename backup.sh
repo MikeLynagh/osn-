@@ -84,4 +84,3 @@ for file in $(FILE2); do
 tar -tvf var/backup.tar.gz
 tar -xzvf var/backup.tar.gz /tmp/backup
 done
-done 
